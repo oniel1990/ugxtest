@@ -15,5 +15,6 @@ jobs:
       with:
         source_repo: "ugxtest"
         source_branch: "main"
+        destination_repo: "UGXdev"
         destination_branch: "main"
         github_token: ${{ secrets.PAT }}
