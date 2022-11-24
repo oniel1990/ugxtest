@@ -1,20 +1,17 @@
 on:
-  push:
-    branches:
-      - main
-    
-name: Package
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  repo-sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-            username: ${{ secrets.FTP_USERNAME }}
-            server: ${{ secrets.FTP_SERVER }}
-            port: ${{ secrets.FTP_PORT }}
-            remote_path: '/public_html'
-            sftp_only: true
-            password: ${{ secrets.FTP_PASSWORD }}
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+    - name: repo-sync
+      uses: repo-sync/github-sync@v2
+      with:
+        source_repo: "ugxtest"
+        source_branch: "main"
+        destination_branch: "main"
+        github_token: ${{ secrets.PAT }}
