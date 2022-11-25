@@ -16,4 +16,4 @@ jobs:
         source_branch: "main"
         destination_repo: "oniel1990/UGXdev"
         destination_branch: "main"
-        github_token: ${{ secrets.PAT }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
